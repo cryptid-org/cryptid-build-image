@@ -27,8 +27,8 @@ LABEL maintainer="attila.bagossy@beardybytes.com" \
 # --- Environment variables
 
 ENV EMSDK_TAG sdk-tag-${EMSDK_VERSION}-32bit
-ENV GMP_DEBUG_OUTPUT_PREFIX=${HOME}/binaries/gmp/debug
-ENV GMP_RELEASE_OUTPUT_PREFIX=${HOME}/binaries/gmp/release
+ENV GMP_DEBUG_OUTPUT_PREFIX=/binaries/gmp/debug
+ENV GMP_RELEASE_OUTPUT_PREFIX=/binaries/gmp/release
 
 # ---
 
@@ -89,8 +89,8 @@ RUN git clone https://github.com/emscripten-core/emsdk \
         emsdk \
  && cd emsdk \
  && ./emsdk install ${EMSDK_TAG} \
- && ln -s ${HOME}/emsdk/binaryen/tag-${EMSDK_VERSION}_32bit_binaryen \
-          ${HOME}/emsdk/binaryen/tag-${EMSDK_VERSION}_64bit_binaryen \
+ && ln -s /emsdk/binaryen/tag-${EMSDK_VERSION}_32bit_binaryen \
+          /emsdk/binaryen/tag-${EMSDK_VERSION}_64bit_binaryen \
  && ./emsdk activate ${EMSDK_TAG} \
  && source ./emsdk_env.sh \
  && cd
