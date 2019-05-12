@@ -13,9 +13,10 @@ variables:
 steps:
 - script: |
     cd docker/cryptid-build-image
-    docker build -t $(dockerId)/$(imageName) .
+    docker build -t $(dockerId)/$(imageName):$IMAGE_TAG .
     docker login -u $(loginId) -p $(pswd)
     docker push $(dockerId)/$(imageName)
   env:
+    IMAGE_TAG: $(Build.SourceBranchName)
     loginId: $(dockerHubBotId)
     pswd: $(dockerHubBotPassword)
