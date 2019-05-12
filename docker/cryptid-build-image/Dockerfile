@@ -85,15 +85,15 @@ RUN cd gmp-${GMP_VERSION} \
 
 # --- Get and activate emscripten
 
-#RUN git clone https://github.com/emscripten-core/emsdk \
-#        emsdk \
-# && cd emsdk \
-# && ./emsdk install ${EMSDK_TAG} \
-# && ln -s ${HOME}/emsdk/binaryen/tag-${EMSDK_VERSION}_32bit_binaryen \
-#          ${HOME}/emsdk/binaryen/tag-${EMSDK_VERSION}_64bit_binaryen \
-# && ./emsdk activate ${EMSDK_TAG} \
-# && source ./emsdk_env.sh \
-# && cd
+RUN git clone https://github.com/emscripten-core/emsdk \
+        emsdk \
+ && cd emsdk \
+ && ./emsdk install ${EMSDK_TAG} \
+ && ln -s ${HOME}/emsdk/binaryen/tag-${EMSDK_VERSION}_32bit_binaryen \
+          ${HOME}/emsdk/binaryen/tag-${EMSDK_VERSION}_64bit_binaryen \
+ && ./emsdk activate ${EMSDK_TAG} \
+ && source ./emsdk_env.sh \
+ && cd
 
 # ---
 
@@ -102,33 +102,33 @@ RUN cd gmp-${GMP_VERSION} \
 
 # --- --- Build an EMCC RELEASE version with optimizations enabled
 
-#RUN cd gmp-${GMP_VERSION} \
-# && emconfigure ./configure \
-#        --disable-assembly \
-#        --disable-shared \
-#        --build i386-pc-linux-gnu \
-#        --prefix=${GMP_RELEASE_OUTPUT_PREFIX} \
-#        --host none \
-#        CFLAGS=-O3 \
-# && make \
-# && make install \
-# && make clean
+RUN cd gmp-${GMP_VERSION} \
+ && emconfigure ./configure \
+        --disable-assembly \
+        --disable-shared \
+        --build i386-pc-linux-gnu \
+        --prefix=${GMP_RELEASE_OUTPUT_PREFIX} \
+        --host none \
+        CFLAGS=-O3 \
+ && make \
+ && make install \
+ && make clean
 
 # --- ---
 
 # --- --- Build an EMCC DEBUG version with debug symbols enabled
 
-#RUN emconfigure ./configure \
-#        --disable-assembly \
-#        --disable-shared \
-#        --build i386-pc-linux-gnu \
-#        --prefix=${GMP_DEBUG_OUTPUT_PREFIX} \
-#        --host none \
-#        CFLAGS=-g \
-# && make \
-# && make install \
-# && make clean \
-# && cd
+RUN emconfigure ./configure \
+        --disable-assembly \
+        --disable-shared \
+        --build i386-pc-linux-gnu \
+        --prefix=${GMP_DEBUG_OUTPUT_PREFIX} \
+        --host none \
+        CFLAGS=-g \
+ && make \
+ && make install \
+ && make clean \
+ && cd
 
 # --- ---
 
