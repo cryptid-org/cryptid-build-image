@@ -98,7 +98,7 @@ RUN git clone https://github.com/emscripten-core/emsdk \
           /emsdk/binaryen/tag-${EMSDK_VERSION}_64bit_binaryen \
  && ./emsdk activate ${EMSDK_TAG} \
  && source ./emsdk_env.sh \
- && cd
+ && cd \
  && cd gmp-${GMP_VERSION} \
  && emconfigure ./configure \
         --disable-assembly \
