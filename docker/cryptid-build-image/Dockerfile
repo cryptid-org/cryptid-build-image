@@ -87,8 +87,8 @@ RUN git clone https://github.com/emscripten-core/emsdk \
         emsdk \
  && cd emsdk \
  && ./emsdk install ${EMSDK_TAG} \
- && ln -s /home/vagrant/emsdk/binaryen/tag-${EMSDK_VERSION}_32bit_binaryen \
-          /home/vagrant/emsdk/binaryen/tag-${EMSDK_VERSION}_64bit_binaryen \
+ && ln -s ${HOME}/emsdk/binaryen/tag-${EMSDK_VERSION}_32bit_binaryen \
+          ${HOME}/emsdk/binaryen/tag-${EMSDK_VERSION}_64bit_binaryen \
  && ./emsdk activate ${EMSDK_TAG} \
  && source ./emsdk_env.sh \
  && cd
