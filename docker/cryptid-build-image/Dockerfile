@@ -86,6 +86,9 @@ RUN cd gmp-${GMP_VERSION} \
 
 
 # --- Get and activate emscripten
+# --- --- Build a GMP EMCC RELEASE version with optimizations enabled
+# --- --- Build a GMP EMCC DEBUG version with debug symbols enabled
+# Must be done in the same RUN command so that source holds effect.
 
 RUN git clone https://github.com/emscripten-core/emsdk \
         emsdk \
@@ -95,17 +98,8 @@ RUN git clone https://github.com/emscripten-core/emsdk \
           /emsdk/binaryen/tag-${EMSDK_VERSION}_64bit_binaryen \
  && ./emsdk activate ${EMSDK_TAG} \
  && source ./emsdk_env.sh \
-    source ./emsdk_env.sh \
  && cd
-
-# ---
-
-
-# --- Build GMP (contd.)
-
-# --- --- Build an EMCC RELEASE version with optimizations enabled
-
-RUN cd gmp-${GMP_VERSION} \
+ && cd gmp-${GMP_VERSION} \
  && emconfigure ./configure \
         --disable-assembly \
         --disable-shared \
@@ -116,12 +110,7 @@ RUN cd gmp-${GMP_VERSION} \
  && make \
  && make install \
  && make clean
-
-# --- ---
-
-# --- --- Build an EMCC DEBUG version with debug symbols enabled
-
-RUN emconfigure ./configure \
+ && emconfigure ./configure \
         --disable-assembly \
         --disable-shared \
         --build i386-pc-linux-gnu \
@@ -132,7 +121,5 @@ RUN emconfigure ./configure \
  && make install \
  && make clean \
  && cd
-
-# --- ---
 
 # ---
