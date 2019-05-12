@@ -1,7 +1,7 @@
 trigger:
-  tags:
+   branches:
     include:
-      - '*'
+      - refs/tags/*
 
 jobs:
   - job: Build_container
