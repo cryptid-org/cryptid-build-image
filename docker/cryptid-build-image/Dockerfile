@@ -95,7 +95,7 @@ RUN git clone https://github.com/emscripten-core/emsdk \
           /emsdk/binaryen/tag-${EMSDK_VERSION}_64bit_binaryen \
  && ./emsdk activate ${EMSDK_TAG} \
  && source ./emsdk_env.sh \
-    source ./emsdk_env.sh
+    source ./emsdk_env.sh \
  && cd
 
 # ---
