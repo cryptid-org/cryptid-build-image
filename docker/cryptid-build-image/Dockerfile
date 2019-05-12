@@ -1,5 +1,7 @@
 FROM i386/ubuntu:16.04
 
+SHELL ["/bin/bash", "-c"]
+
 
 # --- Build arguments
 
@@ -93,6 +95,7 @@ RUN git clone https://github.com/emscripten-core/emsdk \
           /emsdk/binaryen/tag-${EMSDK_VERSION}_64bit_binaryen \
  && ./emsdk activate ${EMSDK_TAG} \
  && source ./emsdk_env.sh \
+    source ./emsdk_env.sh
  && cd
 
 # ---
