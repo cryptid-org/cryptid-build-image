@@ -14,7 +14,8 @@ steps:
 - script: |
     cd docker/cryptid-build-image
     docker build -t $(dockerId)/$(imageName) .
-    docker login -u $(dockerHubBotId) -p $(pswd)
+    docker login -u $(loginId) -p $(pswd)
     docker push $(dockerId)/$(imageName)
   env:
+    loginId: $(dockerHubBotId)
     pswd: $(dockerHubBotPassword)
