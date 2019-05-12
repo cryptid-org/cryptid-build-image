@@ -100,7 +100,7 @@ RUN git clone https://github.com/emscripten-core/emsdk \
 
 # --- --- Build an EMCC RELEASE version with optimizations enabled
 
-RUN cd gmp-${GMP_VERSION}
+RUN cd gmp-${GMP_VERSION} \
  && emconfigure ./configure \
         --disable-assembly \
         --disable-shared \
