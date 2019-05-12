@@ -42,7 +42,9 @@ RUN apt-get update -y \
         ca-certificates \
         cmake \
         git \
+        lcov \
         lzip \
+        mawk \
         python2.7 \
         wget \
  && update-ca-certificates \
