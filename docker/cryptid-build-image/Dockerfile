@@ -109,7 +109,7 @@ RUN git clone https://github.com/emscripten-core/emsdk \
         CFLAGS=-O3 \
  && make \
  && make install \
- && make clean
+ && make clean \
  && emconfigure ./configure \
         --disable-assembly \
         --disable-shared \
