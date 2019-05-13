@@ -1,6 +1,8 @@
 FROM i386/ubuntu:16.04
 
 SHELL ["/bin/bash", "-c"]
+ENV BASE_PATH /usr/dependencies
+WORKDIR ${BASE_PATH}
 
 
 # --- Build arguments
@@ -29,8 +31,8 @@ LABEL maintainer="attila.bagossy@beardybytes.com" \
 # --- Environment variables
 
 ENV EMSDK_TAG sdk-tag-${EMSDK_VERSION}-32bit
-ENV GMP_DEBUG_OUTPUT_PREFIX=/binaries/gmp/debug
-ENV GMP_RELEASE_OUTPUT_PREFIX=/binaries/gmp/release
+ENV GMP_DEBUG_OUTPUT_PREFIX=${BASE_PATH}/binaries/gmp/debug
+ENV GMP_RELEASE_OUTPUT_PREFIX=${BASE_PATH}/binaries/gmp/release
 
 # ---
 
@@ -78,7 +80,6 @@ RUN cd gmp-${GMP_VERSION} \
  && make \
  && make install \
  && make clean \
- && cd
 
 # --- ---
 
@@ -94,11 +95,11 @@ RUN git clone https://github.com/emscripten-core/emsdk \
         emsdk \
  && cd emsdk \
  && ./emsdk install ${EMSDK_TAG} \
- && ln -s /emsdk/binaryen/tag-${EMSDK_VERSION}_32bit_binaryen \
-          /emsdk/binaryen/tag-${EMSDK_VERSION}_64bit_binaryen \
+ && ln -s ${BASE_PATH}/emsdk/binaryen/tag-${EMSDK_VERSION}_32bit_binaryen \
+          ${BASE_PATH}/emsdk/binaryen/tag-${EMSDK_VERSION}_64bit_binaryen \
  && ./emsdk activate ${EMSDK_TAG} \
  && source ./emsdk_env.sh \
- && cd \
+ && cd ${BASE_PATH} \
  && cd gmp-${GMP_VERSION} \
  && emconfigure ./configure \
         --disable-assembly \
@@ -120,6 +121,5 @@ RUN git clone https://github.com/emscripten-core/emsdk \
  && make \
  && make install \
  && make clean \
- && cd
 
 # ---
