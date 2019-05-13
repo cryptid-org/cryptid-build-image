@@ -79,7 +79,7 @@ RUN cd gmp-${GMP_VERSION} \
         CFLAGS=-g \
  && make \
  && make install \
- && make clean \
+ && make clean
 
 # --- ---
 
@@ -120,6 +120,6 @@ RUN git clone https://github.com/emscripten-core/emsdk \
         CFLAGS=-g \
  && make \
  && make install \
- && make clean \
+ && make clean
 
 # ---
