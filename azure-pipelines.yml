@@ -16,7 +16,7 @@ jobs:
     steps:
     - script: |
         cd docker/cryptid-build-image
-        docker build -t $(dockerId)/$(imageName):${IMAGE_TAG} .
+        docker build --privileged -t $(dockerId)/$(imageName):${IMAGE_TAG} .
         docker login -u ${loginId} -p ${pswd}
         docker push $(dockerId)/$(imageName):${IMAGE_TAG}
       env:
